@@ -29,12 +29,18 @@ program. The dataset can be downloaded from the link below :
 
 https://drive.google.com/drive/folders/1XR0v4H73xvUQDT92OO_ud9MVqnTNOXJO?usp=sharing
 
-## Solo Iterative Process
+## Solo Iterative Process and Sprint Planning
+
+Sprint planning details can be found on the following link.
+
+https://docs.google.com/document/d/1Fxr27H92AX2Sr3t2H6NpyOqamlBIBs7oRIrZiXUN6i0/edit?usp=sharing
+
 
 The software is being be developed by following the Solo Iterative Process(SIP). A product backlog, release backlog and 
 work log(time log and code defect log) is being used as structure of the whole project. The log can be viewed at following link :
 
 https://docs.google.com/spreadsheets/d/1IO5K6LXyBzSSsjxovvstrDoHjlVawQgHOqON_L0iJLY/edit?usp=sharing
+
 
 
 
