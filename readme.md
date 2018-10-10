@@ -7,21 +7,34 @@
 
 ---
 
+## Note 
+
+This Project is still in development phase. Build and run instruction coming soon.
+
 ## Overview
 The objective of this project is to design a lane detection (with lane turn signal and
 drive heading output) system for autonomous vehicles/Robots. The proposed lane
 detection algorithm by using a video feed input of a vehicle driving on the highway,
 will detect the lane position and give drive heading angle. Which in turn can be
 passed to steering control system to move the vehicle inside the lane. Maintaining
-the lane on highway is very critical for autonomics vehicles. With the growing research
-and development in the field of autonomous driving, this system will certainly
-provide Acme Robotics competitive edge over competitors. The system can be also
+the lane on highway is very critical for autonomics vehicles. The system can be also
 be integrated with the popular Lane departure warning system designed to warn the
 driver when the vehicle begins to move out of its lane. The system being developed
 in C++ language will provide very good real time performance.
 
+## Dataset
+The dataset used for the system evaluation is taken from Advanced Lane Detection dataset from Udacity - Self Driving Nanodegree
+program. The dataset can be downloaded from the link below :
+
+
+https://drive.google.com/drive/folders/1XR0v4H73xvUQDT92OO_ud9MVqnTNOXJO?usp=sharing
+
 ## Solo Iterative Process
 
+The software is being be developed by following the Solo Iterative Process(SIP). A product backlog, iteration backlog and 
+work log(time log and code defect log) is being used as structure of the whole project. The log can be viewed at following link :
+
+https://docs.google.com/spreadsheets/d/1IO5K6LXyBzSSsjxovvstrDoHjlVawQgHOqON_L0iJLY/edit?usp=sharing
 
 
 
