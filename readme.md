@@ -31,7 +31,7 @@ https://drive.google.com/drive/folders/1XR0v4H73xvUQDT92OO_ud9MVqnTNOXJO?usp=sha
 
 ## Solo Iterative Process
 
-The software is being be developed by following the Solo Iterative Process(SIP). A product backlog, iteration backlog and 
+The software is being be developed by following the Solo Iterative Process(SIP). A product backlog, release backlog and 
 work log(time log and code defect log) is being used as structure of the whole project. The log can be viewed at following link :
 
 https://docs.google.com/spreadsheets/d/1IO5K6LXyBzSSsjxovvstrDoHjlVawQgHOqON_L0iJLY/edit?usp=sharing
