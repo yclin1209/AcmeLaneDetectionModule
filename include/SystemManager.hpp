@@ -7,8 +7,8 @@
 * @copyright MIT License (c) 2018 Indushekhar Singh
 */
 
-#ifndef INCLUDE_SYSTEMANAGER_HPP_
-#define INCLUDE_SYSTEMANAGER_HPP_
+#ifndef INCLUDE_SYSTEMMANAGER_HPP_
+#define INCLUDE_SYSTEMMANAGER_HPP_
 
 #include <iostream>
 #include <vector>
@@ -23,13 +23,11 @@
 
 
 class SystemManager {
-
-private:
+ private:
     LaneDetection  lanedetection_;
     PlotManager plot_;
 
-
-public:
+ public:
    /**
    * @brief Constructor to initialize the object
    */
@@ -51,6 +49,5 @@ public:
     int runLane(std::string filename , int no_of_frames, bool show_plot);
 };
 
-
-#endif // INCLUDE_SYSTEMANAGER_HPP_
+#endif  // INCLUDE_SYSTEMMANAGER_HPP_
 

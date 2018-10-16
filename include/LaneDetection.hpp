@@ -10,10 +10,10 @@
 #ifndef INCLUDE_LANEDETECTION_HPP_
 #define INCLUDE_LANEDETECTION_HPP_
 
-#include <opencv2/highgui/highgui.hpp>
 #include <iostream>
 #include <string>
 #include <vector>
+#include <opencv2/highgui/highgui.hpp>
 #include "opencv2/opencv.hpp"
 
 /**
@@ -23,10 +23,10 @@
 
 class LaneDetection {
  private:
-  double imageCenterX_= 0.0;
-  double imageCenterY_= 0.0;
+  double imageCenterX_ = 0.0;
+  double imageCenterY_ = 0.0;
   double leftSlope_ = 0.0;
-  double rightSlope_= 0.0;
+  double rightSlope_ = 0.0;
   cv::Point leftIntercept_;
   cv::Point rightIntercept_;
   double vanishPointX_ = 0.0;
@@ -82,7 +82,8 @@ class LaneDetection {
    * @return detected line
    */
 
-  std::vector<cv::Point> lineFitting(std::vector<cv::Vec4i> lines, cv::Mat input_image);
+  std::vector<cv::Point> lineFitting(std::vector<cv::Vec4i> lines,
+                                    cv::Mat input_image);
 
   /**
    * @brief Method to predict turn
@@ -100,8 +101,7 @@ class LaneDetection {
    */
 
   double driveHeading();
-
 };
 
-#endif //INCLUDE_LANEDETECTION_HPP_
+#endif  // INCLUDE_LANEDETECTION_HPP_
 

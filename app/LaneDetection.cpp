@@ -10,7 +10,6 @@
 #include <math.h>
 #include <string>
 #include <vector>
-#include "opencv2/opencv.hpp"
 #include "../include/LaneDetection.hpp"
 
 #define PI 3.14159265
@@ -104,7 +103,6 @@ std::vector<cv::Vec4i> LaneDetection::getLines(cv::Mat image_roi) {
 std::vector<cv::Point> LaneDetection::lineFitting(std::vector<cv::Vec4i>
                                                 lines, cv::Mat image_edge) {;
   cv::Point initial_point, final_point;
-  std::vector<double> slopes;
   std::vector<cv::Point> right_points, left_points;
   std::vector<cv::Point> output(4);
   cv::Vec4d right_line, left_line;
