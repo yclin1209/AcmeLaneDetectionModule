@@ -14,7 +14,7 @@
 
 int main() {
     SystemManager laneDetection;
-    laneDetection.runLane("../input/project_video.mp4", 800, true);
+    laneDetection.runLane("../input/project_video.mp4", 1200, true);
 
     return 0;
 }
