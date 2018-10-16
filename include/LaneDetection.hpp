@@ -60,7 +60,7 @@ class LaneDetection {
 
   cv::Mat edgeDetector(cv::Mat image_filter);
 
-  /**
+ /**
   * @brief Method to do extract region of interest
   * @param input_edge Input image  with edge detected
   * @return Image with region of interest
@@ -83,7 +83,22 @@ class LaneDetection {
    */
 
   std::vector<cv::Point> lineFitting(std::vector<cv::Vec4i> lines, cv::Mat input_image);
+
+  /**
+   * @brief Method to predict turn
+   * @param thresh_vanish Threshhold for deciding vanishing point
+   * @return turn prediction : left, right or straight turn
+   */
+
   std::string turnPrediction(double thresh_vanish);
+
+
+  /**
+   * @brief Method to calculate drive heading
+   * @param None
+   * @return None
+   */
+
   double driveHeading();
 
 };

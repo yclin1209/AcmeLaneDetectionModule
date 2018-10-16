@@ -11,6 +11,9 @@
 #include "../include/SystemManager.hpp"
 
 
+ /**
+ * @brief Test for whole system
+ */
 
 TEST(SystemManager, CompleteSystemTest) {
   SystemManager systemanager_;
@@ -18,11 +21,19 @@ TEST(SystemManager, CompleteSystemTest) {
   EXPECT_EQ(0, output);
 }
 
+ /**
+ * @brief Test for file reading
+ */
+
 TEST(SystemManager, FileReadTest) {
   SystemManager systemanager_;
   auto output = systemanager_.runLane("../project_video.mp4" , 1, false);
   EXPECT_EQ(-1, output);
 }
+
+ /**
+ * @brief Test for exceeding number of frames
+ */
 
 TEST(SystemManager, FrameExceedTest) {
   SystemManager systemanager_;
@@ -30,9 +41,13 @@ TEST(SystemManager, FrameExceedTest) {
   EXPECT_EQ(0, output);
 }
 
+/**
+ * @brief Test for no lane detection
+ */
+
 TEST(SystemManager, NoDetectionTest) {
   SystemManager systemanager_;
-  auto output = systemanager_.runLane("../input/test.mp4" ,10, false);
+  auto output = systemanager_.runLane("../input/test.mp4" , 10, false);
   EXPECT_EQ(0, output);
 }
 

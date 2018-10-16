@@ -18,6 +18,7 @@ driver when the vehicle begins to move out of its lane. The system being develop
 in C++ language will provide very good real time performance.
 
 ## Standard install via command-line
+'''
 git clone --recursive https://github.com/Indushekhar/AcmeLaneDetectionModule
 cd <path to repository>
 mkdir build
@@ -26,6 +27,7 @@ cmake ..
 make
 Run tests: ./test/system-test
 Run program demo : ./app/main
+'''
 
 ## Dependencies
 1. OpenCV 3.3.0. This can be downloaded by following the steps of this [link](https://www.learnopencv.com/install-opencv3-on-ubuntu/)

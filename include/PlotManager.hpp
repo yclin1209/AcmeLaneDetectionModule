@@ -35,6 +35,7 @@ class PlotManager {
         * @param line_fit Both lane which are to be plotted
         * @param turnDirection Turn direction left, right or straight
         * @param drive_heading Drive heading value
+        * @param show_plot whether to show plot or not
         */
 
         void  plot(cv::Mat input_image, std::vector<cv::Point> line_fit, std::string turnDirection, double drive_heading, bool show_plot);

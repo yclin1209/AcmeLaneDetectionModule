@@ -16,6 +16,12 @@
 #include "LaneDetection.hpp"
 #include "PlotManager.hpp"
 
+
+/**
+* @brief Class for LaneDetection
+*/
+
+
 class SystemManager {
 
 private:
@@ -24,8 +30,24 @@ private:
 
 
 public:
+   /**
+   * @brief Constructor to initialize the object
+   */
     SystemManager();
+
+  /**
+  * @brief Destroys the object.
+  */
+
     ~SystemManager();
+
+  /**
+  * @brief Method for running the whole LaneDetection system
+  * @param filename Path to the input video to be tested
+  * @param  no_of_frames Number of frames to be processed
+  * @param show_plot Whether to show the frames or not
+  */
+
     int runLane(std::string filename , int no_of_frames, bool show_plot);
 };
 
