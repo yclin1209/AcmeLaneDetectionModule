@@ -18,7 +18,7 @@ SystemManager::SystemManager(){}
 
 SystemManager::~SystemManager(){}
 
-int SystemManager::runLane(std::string filename, int no_of_frames) {
+int SystemManager::runLane(std::string filename, int no_of_frames, bool show_plot) {
   cv::VideoCapture capture(filename);
   if (!capture.isOpened())
     return -1;
@@ -38,7 +38,7 @@ int SystemManager::runLane(std::string filename, int no_of_frames) {
       std::vector<cv::Point>  lane = lanedetection_.lineFitting(lines, image_roi);
       std::string turn = lanedetection_.turnPrediction(10);
       double drive_heading = lanedetection_.driveHeading();
-      plot_.plot(frame, lane, turn,drive_heading);
+      plot_.plot(frame, lane, turn,drive_heading, show_plot);
       cv::waitKey(20);
     }
     else {

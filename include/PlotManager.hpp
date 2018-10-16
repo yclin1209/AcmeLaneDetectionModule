@@ -26,7 +26,7 @@ class PlotManager {
         */
         PlotManager();
         /**
-        * Destructor 
+        * Destructor
         */
         ~PlotManager();
         /**
@@ -37,7 +37,7 @@ class PlotManager {
         * @param drive_heading Drive heading value
         */
 
-        void  plot(cv::Mat input_image, std::vector<cv::Point> line_fit, std::string turnDirection, double drive_heading);
+        void  plot(cv::Mat input_image, std::vector<cv::Point> line_fit, std::string turnDirection, double drive_heading, bool show_plot);
 
 };
 

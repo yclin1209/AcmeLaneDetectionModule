@@ -17,7 +17,7 @@ PlotManager::PlotManager(){}
 PlotManager::~PlotManager(){}
 
 
-void PlotManager::plot(cv::Mat inputImage, std::vector<cv::Point> lane, std::string turn, double drive_heading) {
+void PlotManager::plot(cv::Mat inputImage, std::vector<cv::Point> lane, std::string turn, double drive_heading, bool show_plot) {
   std::vector<cv::Point> ploygon_points;
   cv::Mat output_image;
 
@@ -38,8 +38,10 @@ void PlotManager::plot(cv::Mat inputImage, std::vector<cv::Point> lane, std::str
   cv::putText(inputImage, turn, cv::Point(50, 90), cv::FONT_HERSHEY_COMPLEX_SMALL, 2, cvScalar(255, 255, 0), 1, CV_AA);
   cv::putText(inputImage, "DriveHead (+ left -right )=" + head_text  , cv::Point(50, 45), cv::FONT_HERSHEY_COMPLEX_SMALL, 2, cvScalar(255, 255, 0), 1, CV_AA);
 
-  cv::namedWindow("LaneDetection", CV_WINDOW_AUTOSIZE);
-  cv::imshow("LaneDetection", inputImage);
+  if (show_plot){
+    cv::namedWindow("LaneDetection", CV_WINDOW_AUTOSIZE);
+    cv::imshow("LaneDetection", inputImage);
+  }
 
 }
 

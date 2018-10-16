@@ -9,7 +9,7 @@
 
 int main() {
     SystemManager laneDetection;
-    laneDetection.runLane("../input/project_video.mp4", 800);
+    laneDetection.runLane("../input/project_video.mp4", 800, true);
 
     return 0;
 }

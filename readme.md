@@ -6,11 +6,6 @@
 
 
 ---
-
-## Note 
-
-This Project is still in development phase. Build and run instruction coming soon.
-
 ## Overview
 The objective of this project is to design a lane detection (with lane turn signal and
 drive heading output) system for autonomous vehicles/Robots. The proposed lane
@@ -21,6 +16,19 @@ the lane on highway is very critical for autonomics vehicles. The system can be 
 be integrated with the popular Lane departure warning system designed to warn the
 driver when the vehicle begins to move out of its lane. The system being developed
 in C++ language will provide very good real time performance.
+
+## Standard install via command-line
+git clone --recursive https://github.com/Indushekhar/AcmeLaneDetectionModule
+cd <path to repository>
+mkdir build
+cd build
+cmake ..
+make
+Run tests: ./test/system-test
+Run program demo : ./app/main
+
+## Dependencies
+1. OpenCV 3.3.0. This can be downloaded by following the steps of this [link](https://www.learnopencv.com/install-opencv3-on-ubuntu/)
 
 ## Dataset
 The dataset used for the system evaluation is taken from Advanced Lane Detection dataset from Udacity - Self Driving Nanodegree

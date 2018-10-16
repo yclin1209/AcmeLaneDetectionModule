@@ -26,7 +26,7 @@ private:
 public:
     SystemManager();
     ~SystemManager();
-    int runLane(std::string filename , int no_of_frames);
+    int runLane(std::string filename , int no_of_frames, bool show_plot);
 };
 
 

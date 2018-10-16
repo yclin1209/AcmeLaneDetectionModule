@@ -36,7 +36,7 @@ std::tuple<double, std::string> LaneTest(int frame_number) {
 
     turn = lanedetector.turnPrediction(10);
     double drive_heading = lanedetector.driveHeading();
-    plotmanager.plot(frame, lane, turn , drive_heading);
+    plotmanager.plot(frame, lane, turn , drive_heading, false);
     std::tuple<double, std::string> result(drive_heading,turn);
     return result;
 }
