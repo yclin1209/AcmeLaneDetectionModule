@@ -14,7 +14,7 @@
 
 TEST(SystemManager, CompleteSystemTest) {
   SystemManager systemanager_;
-  auto output = systemanager_.runLane("../build/project_video.mp4" , 1);
+  auto output = systemanager_.runLane("../input/project_video.mp4" , 1);
   EXPECT_EQ(0, output);
 }
 
@@ -26,13 +26,13 @@ TEST(SystemManager, FileReadTest) {
 
 TEST(SystemManager, FrameExceedTest) {
   SystemManager systemanager_;
-  auto output = systemanager_.runLane("../build/test.mp4" , 400);
+  auto output = systemanager_.runLane("../input/test.mp4" , 400);
   EXPECT_EQ(0, output);
 }
 
 TEST(SystemManager, NoDetectionTest) {
   SystemManager systemanager_;
-  auto output = systemanager_.runLane("../build/test.mp4" ,10);
+  auto output = systemanager_.runLane("../input/test.mp4" ,10);
   EXPECT_EQ(0, output);
 }
 

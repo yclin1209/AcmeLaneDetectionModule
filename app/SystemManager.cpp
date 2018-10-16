@@ -6,8 +6,16 @@
 * @version 1.0
 * @copyright MIT License (c) 2018 Indushekhar Singh
 */
+#include <string>
+#include <vector>
+#include "opencv2/opencv.hpp"
+#include "../include/SystemManager.hpp"
+#include <opencv2/highgui/highgui.hpp>
+
+
 
 SystemManager::SystemManager(){}
+
 SystemManager::~SystemManager(){}
 
 int SystemManager::runLane(std::string filename, int no_of_frames) {
