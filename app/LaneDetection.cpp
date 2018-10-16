@@ -1,7 +1,7 @@
 /**
 * @file LaneDetection.cpp
 * @brief LaneDetection class
-* @details Implementation of LaneDetection class
+* @details Implementation of LaneDetection class for detecting lanes
 * @author Indushekhar Singh
 * @version 1.0
 * @copyright MIT License (c) 2018 Indushekhar Singh
@@ -16,10 +16,18 @@
 
 #define PI 3.14159265
 
+/**
+ * @brief Constructs the object.
+ */
 
 LaneDetection::LaneDetection() {}
 
+/**
+ * @brief Destroys the object.
+ */
+
 LaneDetection::~LaneDetection() {}
+
 
 
 cv::Mat LaneDetection::filter(cv::Mat input_image) {
