@@ -1,11 +1,16 @@
 set(GTEST_SHUFFLE 1)
 
 add_executable(
-    cpp-test
+    system-test
     main.cpp
-    test.cpp
+    LaneDetectionTest.cpp
+    SystemManagerTest.cpp
+    ../app/LaneDetection.cpp
+    ../app/PlotManager.cpp
+    ../app/SystemManager.cpp
+    
 )
 
-target_include_directories(cpp-test PUBLIC ../vendor/googletest/googletest/include 
+target_include_directories(system-test PUBLIC ../vendor/googletest/googletest/include 
                                            ${CMAKE_SOURCE_DIR}/include)
-target_link_libraries(cpp-test PUBLIC gtest)
+target_link_libraries(system-test PUBLIC gtest ${OpenCV_LIBS})
