@@ -17,9 +17,11 @@ be integrated with the popular Lane departure warning system designed to warn th
 driver when the vehicle begins to move out of its lane. The system being developed
 in C++ language will provide very good real time performance.
 
+![Test Image 1](https://github.com/Indushekhar/AcmeLaneDetectionModule/blob/master/ezgif.com-video-to-gif.gif)
+
 ## Standard install via command-line
 
-'''
+```
 git clone --recursive https://github.com/Indushekhar/AcmeLaneDetectionModule
 cd <path to repository>
 mkdir build
@@ -29,7 +31,7 @@ make
 Run tests: ./test/system-test
 Run program demo : ./app/main
 
-'''
+```
 
 ## Dependencies
 1. OpenCV 3.3.0. This can be downloaded by following the steps of this [link](https://www.learnopencv.com/install-opencv3-on-ubuntu/)
@@ -53,7 +55,16 @@ work log(time log and code defect log) is being used as structure of the whole p
 
 https://docs.google.com/spreadsheets/d/1IO5K6LXyBzSSsjxovvstrDoHjlVawQgHOqON_L0iJLY/edit?usp=sharing
 
+## Doumentation
 
+To generate documentation install dependencies first 
+
+```
+sudo apt-get install doxygen
+sudo apt-get install doxywizard
+doxywizard
+
+```
 
 
 ## License
