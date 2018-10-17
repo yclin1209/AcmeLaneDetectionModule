@@ -1,0 +1,134 @@
+\href{https://travis-ci.org/Indushekhar/AcmeLaneDetectionModule}{\tt } \href{https://coveralls.io/github/Indushekhar/AcmeLaneDetectionModule}{\tt } \href{https://opensource.org/licenses/MIT}{\tt }
+
+
+
+ \subsection*{Overview}
+
+The objective of this project was to design a lane detection (with lane turn signal and drive heading output) system for autonomous vehicles/\+Robots. The proposed lane detection algorithm by using a video feed input of a vehicle driving on the highway, detects the lane position and give drive heading angle. Which in turn can be passed to steering control system to move the vehicle inside the lane. Maintaining the lane on highway is very critical for autonomics vehicles. The system can be also be integrated with the popular Lane departure warning system designed to warn the driver when the vehicle begins to move out of its lane. The system being developed in C++ language provides very good real time performance.
+
+
+
+\subsection*{Pipeline and Results}
+
+The pipeline of the project can be summarized as \+:
+
+\subsubsection*{1.\+Filter the Image}
+
+First step is to remove the noise using median filter. This smooths the image and removes any undesired pixel values that could prevent the correct detection of the lanes
+
+\subsubsection*{2.\+Apply edge detection to extract vertical edges}
+
+Then apply edge detector to extract vertical edge. The intermediate output after edge detection is shown below
+
+
+
+\subsubsection*{3.\+Extract the Region Of Interest}
+
+As the image from previous step contains extra information which we do not need for lane finding, we extract the Region Of Interest.
+
+
+
+\subsubsection*{4. Find lines using Hough Transform}
+
+In this step we use Hough Transform to find lines on the image. Some paramter tuning is done to get peak hough lines.
+
+\subsubsection*{5. Fit line}
+
+In this step , we find out the peak hough lines, group them into two groups (positive, negative gradients) and extrapolate lines in each group. The lines are classified depending on the value of their slope and where their initial and final points are approximately located with respect to the center of the image.
+
+\subsubsection*{6. Predict turn and Calculate drive head}
+
+Using the intersection point of left and right lines, we get the vanishing point. Based on vanishing point and image center we predict the turns in the lane. For calculating drive head, coordinates of vanishing point in the image are used. Using simple trigonometry, atan2 is used to get angles in degree.
+
+\subsubsection*{7. Plot the lane and drive head}
+
+
+
+\subsubsection*{8. Results}
+
+Output of the syste is quite good. The system was able to detect the lane even the part of the road which was whitish.
+
+
+
+Output video can be seen at this \href{https://drive.google.com/drive/u/1/folders/1rqz6ssvReQMQbOU6W-9e-2ThTCKpCEad}{\tt link}
+
+\subsection*{Dependencies}
+
+
+\begin{DoxyEnumerate}
+\item Open\+CV 3.\+3.\+0. or higher. This can be downloaded by following the steps of this \href{https://www.learnopencv.com/install-opencv3-on-ubuntu/}{\tt link}
+\item For unit testing this project depends on gtest framework by Google.
+\item C\+Make version at least 3.\+2.\+1
+\end{DoxyEnumerate}
+
+\subsection*{Standard install via command-\/line}
+
+
+\begin{DoxyCode}
+1 git clone --recursive https://github.com/Indushekhar/AcmeLaneDetectionModule
+2 cd <path to repository>
+3 mkdir build
+4 cd build
+5 cmake ..
+6 make
+\end{DoxyCode}
+ \subsection*{Instructions to run the demo and tests}
+
+Once the module is built correctly, to run the demo type the following command\+:
+
+
+\begin{DoxyCode}
+1 $ cd <build folder of the module>
+2 $ ./app/main
+\end{DoxyCode}
+
+
+To run the unit tests, please execute the command given below\+:
+
+
+\begin{DoxyCode}
+1 $ ./test/system-test
+\end{DoxyCode}
+
+
+\subsection*{Dataset}
+
+The dataset used for the system evaluation is taken from Advanced Lane Detection dataset from Udacity -\/ Self Driving Nanodegree program. The dataset can be downloaded from the link below \+:
+
+\href{https://drive.google.com/drive/folders/1XR0v4H73xvUQDT92OO_ud9MVqnTNOXJO?usp=sharing}{\tt https\+://drive.\+google.\+com/drive/folders/1\+X\+R0v4\+H73xv\+U\+Q\+D\+T92\+O\+O\+\_\+ud9\+M\+Vqn\+T\+N\+O\+X\+J\+O?usp=sharing}
+
+\subsection*{Solo Iterative Process and Sprint Planning}
+
+Sprint planning details can be found on the following link.
+
+\href{https://docs.google.com/document/d/1Fxr27H92AX2Sr3t2H6NpyOqamlBIBs7oRIrZiXUN6i0/edit?usp=sharing}{\tt https\+://docs.\+google.\+com/document/d/1\+Fxr27\+H92\+A\+X2\+Sr3t2\+H6\+Npy\+Oqaml\+B\+I\+Bs7o\+R\+Ir\+Zi\+X\+U\+N6i0/edit?usp=sharing}
+
+The software is being be developed by following the Solo Iterative Process(\+S\+I\+P). A product backlog, release backlog and work log(time log and code defect log) is being used as structure of the whole project. The log can be viewed at following link \+:
+
+\href{https://docs.google.com/spreadsheets/d/1IO5K6LXyBzSSsjxovvstrDoHjlVawQgHOqON_L0iJLY/edit?usp=sharing}{\tt https\+://docs.\+google.\+com/spreadsheets/d/1\+I\+O5\+K6\+L\+Xy\+Bz\+S\+Ssjxovvstr\+Do\+Hjl\+Vaw\+Qg\+H\+Oq\+O\+N\+\_\+\+L0i\+J\+L\+Y/edit?usp=sharing}
+
+\subsection*{Doumentation}
+
+The douments for this project is already present in docs folder.
+
+To generate documentation install dependencies first
+
+
+\begin{DoxyCode}
+1 $ sudo apt-get install doxygen
+2 $ sudo apt-get install doxygen-gui
+3 $ doxywizard
+\end{DoxyCode}
+ It will open gui version. On the top of the gui window, It will require a working directory. Set the directory. Give the source folder path as the repository folder and check the recursive checkbox. Give target directory where you want to save the documentations files.
+
+\subsection*{License}
+
+M\+IT License
+
+Copyright (c) 2018 Indushekhar Singh
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \char`\"{}\+Software\char`\"{}), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions\+:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+T\+HE S\+O\+F\+T\+W\+A\+RE IS P\+R\+O\+V\+I\+D\+ED \char`\"{}\+A\+S I\+S\char`\"{}, W\+I\+T\+H\+O\+UT W\+A\+R\+R\+A\+N\+TY OF A\+NY K\+I\+ND, E\+X\+P\+R\+E\+SS OR I\+M\+P\+L\+I\+ED, I\+N\+C\+L\+U\+D\+I\+NG B\+UT N\+OT L\+I\+M\+I\+T\+ED TO T\+HE W\+A\+R\+R\+A\+N\+T\+I\+ES OF M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY, F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE A\+ND N\+O\+N\+I\+N\+F\+R\+I\+N\+G\+E\+M\+E\+NT. IN NO E\+V\+E\+NT S\+H\+A\+LL T\+HE A\+U\+T\+H\+O\+RS OR C\+O\+P\+Y\+R\+I\+G\+HT H\+O\+L\+D\+E\+RS BE L\+I\+A\+B\+LE F\+OR A\+NY C\+L\+A\+IM, D\+A\+M\+A\+G\+ES OR O\+T\+H\+ER L\+I\+A\+B\+I\+L\+I\+TY, W\+H\+E\+T\+H\+ER IN AN A\+C\+T\+I\+ON OF C\+O\+N\+T\+R\+A\+CT, T\+O\+RT OR O\+T\+H\+E\+R\+W\+I\+SE, A\+R\+I\+S\+I\+NG F\+R\+OM, O\+UT OF OR IN C\+O\+N\+N\+E\+C\+T\+I\+ON W\+I\+TH T\+HE S\+O\+F\+T\+W\+A\+RE OR T\+HE U\+SE OR O\+T\+H\+ER D\+E\+A\+L\+I\+N\+GS IN T\+HE S\+O\+F\+T\+W\+A\+RE. 

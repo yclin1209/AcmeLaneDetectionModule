@@ -1,0 +1,100 @@
+\hypertarget{class_plot_manager}{}\section{Plot\+Manager Class Reference}
+\label{class_plot_manager}\index{Plot\+Manager@{Plot\+Manager}}
+
+
+Class for \hyperlink{class_plot_manager}{Plot\+Manager}.  
+
+
+
+
+{\ttfamily \#include $<$Plot\+Manager.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_plot_manager_a9a7b472058d22e8bbf7712686b998aae}{Plot\+Manager} ()
+\begin{DoxyCompactList}\small\item\em Constructs the object. \end{DoxyCompactList}\item 
+\hyperlink{class_plot_manager_ab5b318f61ab5e2c50d0bf7d09a05c331}{$\sim$\+Plot\+Manager} ()
+\begin{DoxyCompactList}\small\item\em Constructs the object. \end{DoxyCompactList}\item 
+void \hyperlink{class_plot_manager_a314f6e531f88366eb71c40eb84140c3e}{plot} (cv\+::\+Mat input\+\_\+image, std\+::vector$<$ cv\+::\+Point $>$ line\+\_\+fit, std\+::string turn\+Direction, double drive\+\_\+heading, bool show\+\_\+plot)
+\begin{DoxyCompactList}\small\item\em Method to plot the lane and drive heading on input image. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for \hyperlink{class_plot_manager}{Plot\+Manager}. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Plot\+Manager@{Plot\+Manager}!Plot\+Manager@{Plot\+Manager}}
+\index{Plot\+Manager@{Plot\+Manager}!Plot\+Manager@{Plot\+Manager}}
+\subsubsection[{\texorpdfstring{Plot\+Manager()}{PlotManager()}}]{\setlength{\rightskip}{0pt plus 5cm}Plot\+Manager\+::\+Plot\+Manager (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_plot_manager_a9a7b472058d22e8bbf7712686b998aae}{}\label{class_plot_manager_a9a7b472058d22e8bbf7712686b998aae}
+
+
+Constructs the object. 
+
+Constructor to initialize \index{Plot\+Manager@{Plot\+Manager}!````~Plot\+Manager@{$\sim$\+Plot\+Manager}}
+\index{````~Plot\+Manager@{$\sim$\+Plot\+Manager}!Plot\+Manager@{Plot\+Manager}}
+\subsubsection[{\texorpdfstring{$\sim$\+Plot\+Manager()}{~PlotManager()}}]{\setlength{\rightskip}{0pt plus 5cm}Plot\+Manager\+::$\sim$\+Plot\+Manager (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_plot_manager_ab5b318f61ab5e2c50d0bf7d09a05c331}{}\label{class_plot_manager_ab5b318f61ab5e2c50d0bf7d09a05c331}
+
+
+Constructs the object. 
+
+Destructor 
+
+\subsection{Member Function Documentation}
+\index{Plot\+Manager@{Plot\+Manager}!plot@{plot}}
+\index{plot@{plot}!Plot\+Manager@{Plot\+Manager}}
+\subsubsection[{\texorpdfstring{plot(cv\+::\+Mat input\+\_\+image, std\+::vector$<$ cv\+::\+Point $>$ line\+\_\+fit, std\+::string turn\+Direction, double drive\+\_\+heading, bool show\+\_\+plot)}{plot(cv::Mat input_image, std::vector< cv::Point > line_fit, std::string turnDirection, double drive_heading, bool show_plot)}}]{\setlength{\rightskip}{0pt plus 5cm}void Plot\+Manager\+::plot (
+\begin{DoxyParamCaption}
+\item[{cv\+::\+Mat}]{input\+Image, }
+\item[{std\+::vector$<$ cv\+::\+Point $>$}]{lane, }
+\item[{std\+::string}]{turn, }
+\item[{double}]{drive\+\_\+heading, }
+\item[{bool}]{show\+\_\+plot}
+\end{DoxyParamCaption}
+)}\hypertarget{class_plot_manager_a314f6e531f88366eb71c40eb84140c3e}{}\label{class_plot_manager_a314f6e531f88366eb71c40eb84140c3e}
+
+
+Method to plot the lane and drive heading on input image. 
+
+Plot the lane and drive heading on input image.
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+\_\+image} & Input image \\
+\hline
+{\em line\+\_\+fit} & Both lane which are to be plotted \\
+\hline
+{\em turn\+Direction} & Turn direction left, right or straight \\
+\hline
+{\em drive\+\_\+heading} & Drive heading value \\
+\hline
+{\em show\+\_\+plot} & whether to show plot or not\\
+\hline
+{\em input\+\_\+image} & Input image \\
+\hline
+{\em line\+\_\+fit} & Both lane which are to be plotted \\
+\hline
+{\em turn\+Direction} & Turn direction left, right or straight \\
+\hline
+{\em drive\+\_\+heading} & Drive heading value \\
+\hline
+{\em show\+\_\+plot} & whether to show plot or not \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{_plot_manager_8hpp}{Plot\+Manager.\+hpp}\item 
+app/\hyperlink{_plot_manager_8cpp}{Plot\+Manager.\+cpp}\end{DoxyCompactItemize}

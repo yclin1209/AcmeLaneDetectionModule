@@ -1,0 +1,207 @@
+\hypertarget{class_lane_detection}{}\section{Lane\+Detection Class Reference}
+\label{class_lane_detection}\index{Lane\+Detection@{Lane\+Detection}}
+
+
+Class for \hyperlink{class_lane_detection}{Lane\+Detection}.  
+
+
+
+
+{\ttfamily \#include $<$Lane\+Detection.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_lane_detection_a731f54ebd16a6ad77ff51e413415d1d9}{Lane\+Detection} ()
+\begin{DoxyCompactList}\small\item\em Constructor to initialize the object. \end{DoxyCompactList}\item 
+\hyperlink{class_lane_detection_afdccabf18bc0137fafb973624e8c3df3}{$\sim$\+Lane\+Detection} ()\hypertarget{class_lane_detection_afdccabf18bc0137fafb973624e8c3df3}{}\label{class_lane_detection_afdccabf18bc0137fafb973624e8c3df3}
+
+\begin{DoxyCompactList}\small\item\em Destroys the object. \end{DoxyCompactList}\item 
+cv\+::\+Mat \hyperlink{class_lane_detection_a7c7413cec74ede4469eb090133887f9d}{filter} (cv\+::\+Mat input\+\_\+image)
+\begin{DoxyCompactList}\small\item\em Method to do image filtering. \end{DoxyCompactList}\item 
+cv\+::\+Mat \hyperlink{class_lane_detection_a89874335db28ff99b4b117dc4e21792f}{edge\+Detector} (cv\+::\+Mat image\+\_\+filter)
+\begin{DoxyCompactList}\small\item\em Method to do edge detection. \end{DoxyCompactList}\item 
+cv\+::\+Mat \hyperlink{class_lane_detection_af720e7949d6863e9d3e2100fc2655ce4}{roi\+Extract} (cv\+::\+Mat image\+\_\+edge)
+\begin{DoxyCompactList}\small\item\em Method to do extract region of interest. \end{DoxyCompactList}\item 
+std\+::vector$<$ cv\+::\+Vec4i $>$ \hyperlink{class_lane_detection_a3d2a00fcb2a6487d6cbd16c72768c4e4}{get\+Lines} (cv\+::\+Mat image\+\_\+roi)
+\begin{DoxyCompactList}\small\item\em Method to do find line in the image. \end{DoxyCompactList}\item 
+std\+::vector$<$ cv\+::\+Point $>$ \hyperlink{class_lane_detection_a58b5c9a016cbdad5fc2698492d157085}{line\+Fitting} (std\+::vector$<$ cv\+::\+Vec4i $>$ lines, cv\+::\+Mat input\+\_\+image)
+\begin{DoxyCompactList}\small\item\em Method to do fit a single line in the image. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{class_lane_detection_ab3b0a639451e5056ff2d62d8ebd06fc9}{turn\+Prediction} (double thresh\+\_\+vanish)
+\begin{DoxyCompactList}\small\item\em Method to predict turn. \end{DoxyCompactList}\item 
+double \hyperlink{class_lane_detection_abd0c50facc187e7dc6c09c5325a5f013}{drive\+Heading} ()
+\begin{DoxyCompactList}\small\item\em Method to calculate drive heading. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for \hyperlink{class_lane_detection}{Lane\+Detection}. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Lane\+Detection@{Lane\+Detection}!Lane\+Detection@{Lane\+Detection}}
+\index{Lane\+Detection@{Lane\+Detection}!Lane\+Detection@{Lane\+Detection}}
+\subsubsection[{\texorpdfstring{Lane\+Detection()}{LaneDetection()}}]{\setlength{\rightskip}{0pt plus 5cm}Lane\+Detection\+::\+Lane\+Detection (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_lane_detection_a731f54ebd16a6ad77ff51e413415d1d9}{}\label{class_lane_detection_a731f54ebd16a6ad77ff51e413415d1d9}
+
+
+Constructor to initialize the object. 
+
+Constructs the object. 
+
+\subsection{Member Function Documentation}
+\index{Lane\+Detection@{Lane\+Detection}!drive\+Heading@{drive\+Heading}}
+\index{drive\+Heading@{drive\+Heading}!Lane\+Detection@{Lane\+Detection}}
+\subsubsection[{\texorpdfstring{drive\+Heading()}{driveHeading()}}]{\setlength{\rightskip}{0pt plus 5cm}double Lane\+Detection\+::drive\+Heading (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_lane_detection_abd0c50facc187e7dc6c09c5325a5f013}{}\label{class_lane_detection_abd0c50facc187e7dc6c09c5325a5f013}
+
+
+Method to calculate drive heading. 
+
+Calculate the drive heading.
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\index{Lane\+Detection@{Lane\+Detection}!edge\+Detector@{edge\+Detector}}
+\index{edge\+Detector@{edge\+Detector}!Lane\+Detection@{Lane\+Detection}}
+\subsubsection[{\texorpdfstring{edge\+Detector(cv\+::\+Mat image\+\_\+filter)}{edgeDetector(cv::Mat image_filter)}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Mat Lane\+Detection\+::edge\+Detector (
+\begin{DoxyParamCaption}
+\item[{cv\+::\+Mat}]{image\+\_\+filter}
+\end{DoxyParamCaption}
+)}\hypertarget{class_lane_detection_a89874335db28ff99b4b117dc4e21792f}{}\label{class_lane_detection_a89874335db28ff99b4b117dc4e21792f}
+
+
+Method to do edge detection. 
+
+Do edge detection on filtered image.
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+\_\+filter} & Input image frame \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Image with edge detected 
+\end{DoxyReturn}
+\index{Lane\+Detection@{Lane\+Detection}!filter@{filter}}
+\index{filter@{filter}!Lane\+Detection@{Lane\+Detection}}
+\subsubsection[{\texorpdfstring{filter(cv\+::\+Mat input\+\_\+image)}{filter(cv::Mat input_image)}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Mat Lane\+Detection\+::filter (
+\begin{DoxyParamCaption}
+\item[{cv\+::\+Mat}]{input\+\_\+image}
+\end{DoxyParamCaption}
+)}\hypertarget{class_lane_detection_a7c7413cec74ede4469eb090133887f9d}{}\label{class_lane_detection_a7c7413cec74ede4469eb090133887f9d}
+
+
+Method to do image filtering. 
+
+Do image filtering on input image.
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+\_\+image} & Input image frame to be filtered \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Filtered Image 
+\end{DoxyReturn}
+\index{Lane\+Detection@{Lane\+Detection}!get\+Lines@{get\+Lines}}
+\index{get\+Lines@{get\+Lines}!Lane\+Detection@{Lane\+Detection}}
+\subsubsection[{\texorpdfstring{get\+Lines(cv\+::\+Mat image\+\_\+roi)}{getLines(cv::Mat image_roi)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ cv\+::\+Vec4i $>$ Lane\+Detection\+::get\+Lines (
+\begin{DoxyParamCaption}
+\item[{cv\+::\+Mat}]{image\+\_\+roi}
+\end{DoxyParamCaption}
+)}\hypertarget{class_lane_detection_a3d2a00fcb2a6487d6cbd16c72768c4e4}{}\label{class_lane_detection_a3d2a00fcb2a6487d6cbd16c72768c4e4}
+
+
+Method to do find line in the image. 
+
+Find lines on the image.
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+\_\+roi} & Input image with region of interest \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+detected line 
+\end{DoxyReturn}
+\index{Lane\+Detection@{Lane\+Detection}!line\+Fitting@{line\+Fitting}}
+\index{line\+Fitting@{line\+Fitting}!Lane\+Detection@{Lane\+Detection}}
+\subsubsection[{\texorpdfstring{line\+Fitting(std\+::vector$<$ cv\+::\+Vec4i $>$ lines, cv\+::\+Mat input\+\_\+image)}{lineFitting(std::vector< cv::Vec4i > lines, cv::Mat input_image)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ cv\+::\+Point $>$ Lane\+Detection\+::line\+Fitting (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ cv\+::\+Vec4i $>$}]{lines, }
+\item[{cv\+::\+Mat}]{image\+\_\+edge}
+\end{DoxyParamCaption}
+)}\hypertarget{class_lane_detection_a58b5c9a016cbdad5fc2698492d157085}{}\label{class_lane_detection_a58b5c9a016cbdad5fc2698492d157085}
+
+
+Method to do fit a single line in the image. 
+
+Do the line fitting.
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+\_\+roi} & Input image with region of interest \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+detected line 
+\end{DoxyReturn}
+\index{Lane\+Detection@{Lane\+Detection}!roi\+Extract@{roi\+Extract}}
+\index{roi\+Extract@{roi\+Extract}!Lane\+Detection@{Lane\+Detection}}
+\subsubsection[{\texorpdfstring{roi\+Extract(cv\+::\+Mat image\+\_\+edge)}{roiExtract(cv::Mat image_edge)}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Mat Lane\+Detection\+::roi\+Extract (
+\begin{DoxyParamCaption}
+\item[{cv\+::\+Mat}]{image\+\_\+edge}
+\end{DoxyParamCaption}
+)}\hypertarget{class_lane_detection_af720e7949d6863e9d3e2100fc2655ce4}{}\label{class_lane_detection_af720e7949d6863e9d3e2100fc2655ce4}
+
+
+Method to do extract region of interest. 
+
+Extract region of interest.
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+\_\+edge} & Input image with edge detected \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Image with region of interest 
+\end{DoxyReturn}
+\index{Lane\+Detection@{Lane\+Detection}!turn\+Prediction@{turn\+Prediction}}
+\index{turn\+Prediction@{turn\+Prediction}!Lane\+Detection@{Lane\+Detection}}
+\subsubsection[{\texorpdfstring{turn\+Prediction(double thresh\+\_\+vanish)}{turnPrediction(double thresh_vanish)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Lane\+Detection\+::turn\+Prediction (
+\begin{DoxyParamCaption}
+\item[{double}]{thresh\+\_\+vanish}
+\end{DoxyParamCaption}
+)}\hypertarget{class_lane_detection_ab3b0a639451e5056ff2d62d8ebd06fc9}{}\label{class_lane_detection_ab3b0a639451e5056ff2d62d8ebd06fc9}
+
+
+Method to predict turn. 
+
+Predict the turn.
+
+
+\begin{DoxyParams}{Parameters}
+{\em thresh\+\_\+vanish} & Threshhold for deciding vanishing point \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+turn prediction \+: left, right or straight turn 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{_lane_detection_8hpp}{Lane\+Detection.\+hpp}\item 
+app/\hyperlink{_lane_detection_8cpp}{Lane\+Detection.\+cpp}\end{DoxyCompactItemize}
