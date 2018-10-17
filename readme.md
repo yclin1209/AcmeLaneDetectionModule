@@ -78,14 +78,14 @@ Output video can be seen at this [link] (https://drive.google.com/drive/u/1/fold
 
 ## Standard install via command-line
 
-
+```
 git clone --recursive https://github.com/Indushekhar/AcmeLaneDetectionModule
 cd <path to repository>
 mkdir build
 cd build
 cmake ..
 make
-
+```
 ## Instructions to run the demo and tests
 
 Once the module is built correctly, to run the demo type the following command:
