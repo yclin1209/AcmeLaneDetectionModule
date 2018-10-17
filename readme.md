@@ -1,37 +1,63 @@
 # Lane Detection for Autonomous Vehicle
 [![Build Status](https://travis-ci.org/Indushekhar/AcmeLaneDetectionModule.svg?branch=master)](https://travis-ci.org/Indushekhar/AcmeLaneDetectionModule)
-[![Coverage Status](https://coveralls.io/repos/github/Indushekhar/AcmeLaneDetectionModule/badge.svg?branch=master)](https://coveralls.io/github/Indushekhar/AcmeLaneDetectionModule?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/Indushekhar/AcmeLaneDetectionModule/badge.svg)](https://coveralls.io/github/Indushekhar/AcmeLaneDetectionModule)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
 
 ---
 ## Overview
-The objective of this project is to design a lane detection (with lane turn signal and
+The objective of this project was to design a lane detection (with lane turn signal and
 drive heading output) system for autonomous vehicles/Robots. The proposed lane
-detection algorithm by using a video feed input of a vehicle driving on the highway,
-will detect the lane position and give drive heading angle. Which in turn can be
+detection algorithm by using a video feed input of a vehicle driving on the highway, detects the lane position and give drive heading angle. Which in turn can be
 passed to steering control system to move the vehicle inside the lane. Maintaining
 the lane on highway is very critical for autonomics vehicles. The system can be also
 be integrated with the popular Lane departure warning system designed to warn the
 driver when the vehicle begins to move out of its lane. The system being developed
-in C++ language will provide very good real time performance.
+in C++ language provides very good real time performance.
 
-![Test Image 1](https://github.com/Indushekhar/AcmeLaneDetectionModule/blob/master/ezgif.com-video-to-gif.gif)
+<<<<<<< HEAD
+ ![Test Image 1](https://github.com/Indushekhar/AcmeLaneDetectionModule/blob/master/ezgif.com-video-to-gif.gif) 
 
+## Pipeline and Results
+Project pipeline can be Summarized as :
+
+1. Filter the image
+
+Apply median filter first to remove the noise.
+
+2. Apply edge detection to extract vertical edges.
+
+
+3. Extract the region of interest
+
+=======
+>>>>>>> parent of 92e0554... [21][Red] updated readme
 ## Standard install via command-line
 
-```
+'''
 git clone --recursive https://github.com/Indushekhar/AcmeLaneDetectionModule
 cd <path to repository>
 mkdir build
 cd build
 cmake ..
 make
-Run tests: ./test/system-test
-Run program demo : ./app/main
 
 ```
+
+### Running the dem
+
+```
+./app/main
+
+```
+
+### Running the test
+
+```
+ ./test/system-test
+
+'''
 
 ## Dependencies
 1. OpenCV 3.3.0. This can be downloaded by following the steps of this [link](https://www.learnopencv.com/install-opencv3-on-ubuntu/)
@@ -55,17 +81,22 @@ work log(time log and code defect log) is being used as structure of the whole p
 
 https://docs.google.com/spreadsheets/d/1IO5K6LXyBzSSsjxovvstrDoHjlVawQgHOqON_L0iJLY/edit?usp=sharing
 
+<<<<<<< HEAD
 ## Doumentation
 
 To generate documentation install dependencies first 
 
 ```
-sudo apt-get install doxygen
-sudo apt-get install doxywizard
-doxywizard
+$ sudo apt-get install doxygen
+$ sudo apt-get install doxygen-gui
+$ doxywizard
 
 ```
+It will open gui version. On the top of the gui window, It will required a working directory. Set the directory. Give the source folder path and check the recursive checkbox. Give target directory to save the documentations files.
+=======
 
+
+>>>>>>> parent of 92e0554... [21][Red] updated readme
 
 ## License
 
