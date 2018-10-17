@@ -16,23 +16,51 @@ be integrated with the popular Lane departure warning system designed to warn th
 driver when the vehicle begins to move out of its lane. The system being developed
 in C++ language provides very good real time performance.
 
-<<<<<<< HEAD
- ![Test Image 1](https://github.com/Indushekhar/AcmeLaneDetectionModule/blob/master/ezgif.com-video-to-gif.gif) 
+ ![Test Image 1](https://github.com/Indushekhar/AcmeLaneDetectionModule/blob/master/images/ezgif.com-video-to-gif.gif) 
 
-## Pipeline and Results
-Project pipeline can be Summarized as :
+## Pipeline and Results 
 
-1. Filter the image
+The pipeline of the project can be summarized as :
 
-Apply median filter first to remove the noise.
+## 1.Filter the Image
 
-2. Apply edge detection to extract vertical edges.
+First step is to remove the noise using median filter. This smooths the image and removes any undesired pixel values that could prevent the correct detection of the lanes
+
+## 2.Apply edge detection to extract vertical edges
+
+Then apply edge detector to extract vertical edge. The intermediate output after edge detection is shown below
+
+ ![Test Image 2](https://github.com/Indushekhar/AcmeLaneDetectionModule/blob/master/images/edge.png) 
 
 
-3. Extract the region of interest
+## 3.Extract the Region Of Interest
 
-=======
->>>>>>> parent of 92e0554... [21][Red] updated readme
+As the image from previous step contains extra information which we do not need for lane finding, we extract the Region Of Interest.
+
+![Test Image 2](https://github.com/Indushekhar/AcmeLaneDetectionModule/blob/master/images/roi.png) 
+
+
+
+## 4. Find lines using Hough Transform
+
+In this step we use Hough Transform to find lines on the image. Some paramter tuning is done to 
+
+
+## 5. Fit line
+In this step , we find out the peak hough lines, group them into two groups (positive,
+negative gradients) and extrapolate lines in each group.
+
+## 6. Predict turn and Calculate drive head
+
+Using the intersection point of left and right lines, we get the vanishing point. Based on vanishing point and image center we predict the turns in the lane.
+
+## 7. Plot the lane and drive head
+
+![Test Image 2](https://github.com/Indushekhar/AcmeLaneDetectionModule/blob/master/images/plot_normal.png) 
+
+
+
+
 ## Standard install via command-line
 
 '''
@@ -43,21 +71,10 @@ cd build
 cmake ..
 make
 
-```
-
-### Running the dem
-
-```
-./app/main
+Run tests: ./test/system-test
+Run program: ./app/main
 
 ```
-
-### Running the test
-
-```
- ./test/system-test
-
-'''
 
 ## Dependencies
 1. OpenCV 3.3.0. This can be downloaded by following the steps of this [link](https://www.learnopencv.com/install-opencv3-on-ubuntu/)
@@ -81,7 +98,6 @@ work log(time log and code defect log) is being used as structure of the whole p
 
 https://docs.google.com/spreadsheets/d/1IO5K6LXyBzSSsjxovvstrDoHjlVawQgHOqON_L0iJLY/edit?usp=sharing
 
-<<<<<<< HEAD
 ## Doumentation
 
 To generate documentation install dependencies first 
@@ -93,10 +109,7 @@ $ doxywizard
 
 ```
 It will open gui version. On the top of the gui window, It will required a working directory. Set the directory. Give the source folder path and check the recursive checkbox. Give target directory to save the documentations files.
-=======
 
-
->>>>>>> parent of 92e0554... [21][Red] updated readme
 
 ## License
 
