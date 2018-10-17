@@ -86,6 +86,17 @@ cd build
 cmake ..
 make
 ```
+## Building for code coverage
+```
+sudo apt-get install lcov
+cmake -D COVERAGE=ON -D CMAKE_BUILD_TYPE=Debug ../
+make
+make code_coverage
+
+```
+This generates a index.html page in the build/coverage sub-directory that can be viewed locally in a web browser.
+
+
 ## Instructions to run the demo and tests
 
 Once the module is built correctly, to run the demo type the following command:
