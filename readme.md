@@ -22,18 +22,18 @@ in C++ language provides very good real time performance.
 
 The pipeline of the project can be summarized as :
 
-## 1.Filter the Image
+### 1.Filter the Image
 
 First step is to remove the noise using median filter. This smooths the image and removes any undesired pixel values that could prevent the correct detection of the lanes
 
-## 2.Apply edge detection to extract vertical edges
+### 2.Apply edge detection to extract vertical edges
 
 Then apply edge detector to extract vertical edge. The intermediate output after edge detection is shown below
 
  ![Test Image 2](https://github.com/Indushekhar/AcmeLaneDetectionModule/blob/master/images/edge.png) 
 
 
-## 3.Extract the Region Of Interest
+### 3.Extract the Region Of Interest
 
 As the image from previous step contains extra information which we do not need for lane finding, we extract the Region Of Interest.
 
@@ -41,29 +41,44 @@ As the image from previous step contains extra information which we do not need 
 
 
 
-## 4. Find lines using Hough Transform
+### 4. Find lines using Hough Transform
 
-In this step we use Hough Transform to find lines on the image. Some paramter tuning is done to 
+In this step we use Hough Transform to find lines on the image. Some paramter tuning is done to get peak hough lines.
 
 
-## 5. Fit line
+### 5. Fit line
 In this step , we find out the peak hough lines, group them into two groups (positive,
-negative gradients) and extrapolate lines in each group.
+negative gradients) and extrapolate lines in each group. The lines are classified depending on the value of their slope and where their initial and final points are approximately located with respect to the center of the image.
 
-## 6. Predict turn and Calculate drive head
+### 6. Predict turn and Calculate drive head
 
-Using the intersection point of left and right lines, we get the vanishing point. Based on vanishing point and image center we predict the turns in the lane.
+Using the intersection point of left and right lines, we get the vanishing point. Based on vanishing point and image center we predict the turns in the lane. For calculating drive head, coordinates of vanishing point in the image are used. Using simple trigonometry, atan2 is used to get angles in degree.
 
-## 7. Plot the lane and drive head
+### 7. Plot the lane and drive head
 
 ![Test Image 2](https://github.com/Indushekhar/AcmeLaneDetectionModule/blob/master/images/plot_normal.png) 
 
+### 8. Results
 
+Output of the syste is quite good. The system was able to detect the lane even the part of the road which was whitish.
+
+![Test Image 2](https://github.com/Indushekhar/AcmeLaneDetectionModule/blob/master/images/plot.png) 
+
+
+Output video can be seen at this [link] (https://drive.google.com/drive/u/1/folders/1rqz6ssvReQMQbOU6W-9e-2ThTCKpCEad)
+
+
+## Dependencies
+1. OpenCV 3.3.0. or higher. This can be downloaded by following the steps of this [link](https://www.learnopencv.com/install-opencv3-on-ubuntu/)
+
+2. For unit testing this project depends on gtest framework by Google.
+
+3. CMake version at least 3.2.1
 
 
 ## Standard install via command-line
 
-'''
+
 git clone --recursive https://github.com/Indushekhar/AcmeLaneDetectionModule
 cd <path to repository>
 mkdir build
@@ -71,13 +86,24 @@ cd build
 cmake ..
 make
 
-Run tests: ./test/system-test
-Run program: ./app/main
+## Instructions to run the demo and tests
+
+Once the module is built correctly, to run the demo type the following command:
+
+```
+$ cd <build folder of the module>
+$ ./app/main
 
 ```
 
-## Dependencies
-1. OpenCV 3.3.0. This can be downloaded by following the steps of this [link](https://www.learnopencv.com/install-opencv3-on-ubuntu/)
+To run the unit tests, please execute the command given below:
+
+```
+$ ./test/system-test
+ 
+
+```
+
 
 ## Dataset
 The dataset used for the system evaluation is taken from Advanced Lane Detection dataset from Udacity - Self Driving Nanodegree
@@ -100,6 +126,8 @@ https://docs.google.com/spreadsheets/d/1IO5K6LXyBzSSsjxovvstrDoHjlVawQgHOqON_L0i
 
 ## Doumentation
 
+The douments for this project is already present in docs folder.
+
 To generate documentation install dependencies first 
 
 ```
@@ -108,7 +136,7 @@ $ sudo apt-get install doxygen-gui
 $ doxywizard
 
 ```
-It will open gui version. On the top of the gui window, It will required a working directory. Set the directory. Give the source folder path and check the recursive checkbox. Give target directory to save the documentations files.
+It will open gui version. On the top of the gui window, It will require a working directory. Set the directory. Give the source folder path as the repository folder and check the recursive checkbox. Give target directory where you want to save the documentations files.
 
 
 ## License
