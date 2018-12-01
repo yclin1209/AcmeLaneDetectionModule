@@ -31,19 +31,14 @@ TEST(MockLDTest , PredictionTest) {
 
     MockLD mld;
     SystemManager sm;
-/*
-    EXPECT_CALL(mld, turnPrediction(10))
-    .Times(AtLeast(1))
-    .WillOnce(Return(true));*/
 
     EXPECT_CALL(mld, turnPrediction(10))
     .Times(1);
-/*
+
     EXPECT_CALL(mld, driveHeading())
     .Times(1);
 
-    EXPECT_CALL(mld, success(0.1))
-    .Times(1);*/
+
 
     int value = sm.runLane("../input/project_video.mp4" ,600, false);
     EXPECT_EQ(value,0);

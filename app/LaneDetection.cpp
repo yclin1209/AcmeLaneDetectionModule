@@ -193,3 +193,8 @@ double LaneDetection::driveHeading() {
                                 * 180 / PI;
   return drive_heading;
 }
+
+int runLane(std::string filename , int no_of_frames, bool show_plot) {
+  return 0;
+}
+

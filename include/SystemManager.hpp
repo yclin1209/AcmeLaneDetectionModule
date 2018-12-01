@@ -22,7 +22,7 @@
 */
 
 
-class SystemManager {
+class SystemManager : public LaneDetection {
  private:
     LaneDetection  lanedetection_;
     PlotManager plot_;

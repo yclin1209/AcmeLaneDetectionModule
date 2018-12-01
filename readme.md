@@ -107,6 +107,21 @@ $ ./app/main
 
 ```
 
+For building the GMock_Extra_Credit, after cloning the main repo :
+
+```
+cd <path to repository>
+$ git checkout GMock_Extra_Credit
+mkdir build
+cd build
+cmake ..
+make
+
+
+```
+
+
+
 To run the unit tests, please execute the command given below:
 
 ```
@@ -114,7 +129,17 @@ $ ./test/system-test
  
 
 ```
+## [New] Google Mock Test
 
+Google Mock is a framework that let's us create a mock class using macros.
+
+To run the test :
+
+
+```
+$ ./test/system-test
+
+```
 
 ## Dataset
 The dataset used for the system evaluation is taken from Advanced Lane Detection dataset from Udacity - Self Driving Nanodegree
