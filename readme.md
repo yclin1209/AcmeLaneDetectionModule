@@ -69,7 +69,7 @@ Output video can be seen at this [link] (https://drive.google.com/drive/u/1/fold
 
 
 ## Dependencies
-1. OpenCV 3.3.0. or higher. This can be downloaded by following the steps of this [link](https://www.learnopencv.com/install-opencv3-on-ubuntu/)
+1. OpenCV 4.1 or higher. This can be downloaded by following the steps of this [link](https://opencv.org/opencv-4-1/)
 
 2. For unit testing this project depends on gtest framework by Google.
 
