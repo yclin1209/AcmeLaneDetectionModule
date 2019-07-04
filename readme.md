@@ -16,53 +16,21 @@ be integrated with the popular Lane departure warning system designed to warn th
 driver when the vehicle begins to move out of its lane. The system being developed
 in C++ language provides very good real time performance.
 
- ![Test Image 1](https://github.com/Indushekhar/AcmeLaneDetectionModule/blob/master/images/ezgif.com-video-to-gif.gif) 
-
-## Pipeline and Results 
-
-The pipeline of the project can be summarized as :
-
-### 1.Filter the Image
-
-First step is to remove the noise using median filter. This smooths the image and removes any undesired pixel values that could prevent the correct detection of the lanes
-
-### 2.Apply edge detection to extract vertical edges
-
-Then apply edge detector to extract vertical edge. The intermediate output after edge detection is shown below
-
- ![Test Image 2](https://github.com/Indushekhar/AcmeLaneDetectionModule/blob/master/images/edge.png) 
+ ![Test Image 1](https://github.com/yclin1209/AcmeLaneDetectionModule/blob/master/images/ezgif.com-video-to-gif.gif) 
 
 
-### 3.Extract the Region Of Interest
-
-As the image from previous step contains extra information which we do not need for lane finding, we extract the Region Of Interest.
-
-![Test Image 2](https://github.com/Indushekhar/AcmeLaneDetectionModule/blob/master/images/roi.png) 
-
-
-
-### 4. Find lines using Hough Transform
-
-In this step we use Hough Transform to find lines on the image. Some paramter tuning is done to get peak hough lines.
-
-
-### 5. Fit line
 In this step , we find out the peak hough lines, group them into two groups (positive,
 negative gradients) and extrapolate lines in each group. The lines are classified depending on the value of their slope and where their initial and final points are approximately located with respect to the center of the image.
 
-### 6. Predict turn and Calculate drive head
+###  Plot the lane and drive head
 
-Using the intersection point of left and right lines, we get the vanishing point. Based on vanishing point and image center we predict the turns in the lane. For calculating drive head, coordinates of vanishing point in the image are used. Using simple trigonometry, atan2 is used to get angles in degree.
+![Test Image 2](https://github.com/yclin1209/AcmeLaneDetectionModule/blob/master/images/plot_normal.png) 
 
-### 7. Plot the lane and drive head
-
-![Test Image 2](https://github.com/Indushekhar/AcmeLaneDetectionModule/blob/master/images/plot_normal.png) 
-
-### 8. Results
+###  Results
 
 Output of the syste is quite good. The system was able to detect the lane even the part of the road which was whitish.
 
-![Test Image 2](https://github.com/Indushekhar/AcmeLaneDetectionModule/blob/master/images/plot.png) 
+![Test Image 2](https://github.com/yclin1209/AcmeLaneDetectionModule/blob/master/images/plot.png) 
 
 
 Output video can be seen at this [link] (https://drive.google.com/drive/u/1/folders/1rqz6ssvReQMQbOU6W-9e-2ThTCKpCEad)
@@ -79,7 +47,7 @@ Output video can be seen at this [link] (https://drive.google.com/drive/u/1/fold
 ## Standard install via command-line
 
 ```
-git clone --recursive https://github.com/Indushekhar/AcmeLaneDetectionModule
+git clone --recursive https://github.com/yclin1209/AcmeLaneDetectionModule
 cd <path to repository>
 mkdir build
 cd build
@@ -122,18 +90,6 @@ program. The dataset can be downloaded from the link below :
 
 
 https://drive.google.com/drive/folders/1XR0v4H73xvUQDT92OO_ud9MVqnTNOXJO?usp=sharing
-
-## Solo Iterative Process and Sprint Planning
-
-Sprint planning details can be found on the following link.
-
-https://docs.google.com/document/d/1Fxr27H92AX2Sr3t2H6NpyOqamlBIBs7oRIrZiXUN6i0/edit?usp=sharing
-
-
-The software is being be developed by following the Solo Iterative Process(SIP). A product backlog, release backlog and 
-work log(time log and code defect log) is being used as structure of the whole project. The log can be viewed at following link :
-
-https://docs.google.com/spreadsheets/d/1IO5K6LXyBzSSsjxovvstrDoHjlVawQgHOqON_L0iJLY/edit?usp=sharing
 
 ## Doumentation
 
