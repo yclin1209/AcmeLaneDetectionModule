@@ -12,6 +12,8 @@
 #include <vector>
 #include "../include/LaneDetection.hpp"
 
+extern double direction;
+
 #define PI 3.14159265
 
 /**
@@ -34,11 +36,14 @@ LaneDetection::~LaneDetection() {}
   */
 
 cv::Mat LaneDetection::filter(cv::Mat input_image) {
+
   cv::Mat image_output;
+  
   // Apply median filter
   cv::medianBlur(input_image, image_output , 3);
 
   return image_output;
+
 }
 
  /**
@@ -49,10 +54,14 @@ cv::Mat LaneDetection::filter(cv::Mat input_image) {
 
 
 cv::Mat LaneDetection::edgeDetector(cv::Mat image_filter) {
+
   cv::Mat image_output;
+
   // Apply Canny edge detector
   Canny(image_filter, image_output, 185, 250, 3);
+
   return image_output;
+
 }
 
 /**
@@ -128,13 +137,13 @@ std::vector<cv::Point> LaneDetection::lineFitting(std::vector<cv::Vec4i>
   }
   if (right_points.size() > 0) {
       // The right line is formed here
-      cv::fitLine(right_points, right_line, CV_DIST_L2, 0, 0.01, 0.01);
+      cv::fitLine(right_points, right_line, cv::DIST_L2, 0, 0.01, 0.01);
       rightSlope_ = right_line[1] / right_line[0];
       rightIntercept_ = cv::Point(right_line[2], right_line[3]);
     }
   if (left_points.size() > 0) {
       // The left line is formed here
-      cv::fitLine(left_points, left_line, CV_DIST_L2, 0, 0.01, 0.01);
+      cv::fitLine(left_points, left_line, cv::DIST_L2, 0, 0.01, 0.01);
       leftSlope_ = left_line[1] / left_line[0];
       leftIntercept_ = cv::Point(left_line[2], left_line[3]);
     }
