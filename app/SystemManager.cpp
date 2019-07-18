@@ -53,6 +53,7 @@ int SystemManager::runLane(std::string filename, int no_of_frames,
 
   // capture the video frame
   cv::VideoCapture capture(filename);
+
   // Check if captured succefully
   if (!capture.isOpened())
         return -1;
@@ -76,7 +77,8 @@ int SystemManager::runLane(std::string filename, int no_of_frames,
         // Do edge detection
 #if 1
     	cv::Mat image_edge = lanedetection_.edgeDetector(image_filter);
-#else
+#else   
+        // testing CUDA
         cv::Ptr<cv::cuda::CannyEdgeDetector> canny = cv::cuda::createCannyEdgeDetector(185,250,3);
         cv::cuda::GpuMat image_edge_gpu,image_filter_gpu;
         cv::cvtColor(image_filter,image_filter, cv::COLOR_BGR2GRAY);
@@ -108,7 +110,7 @@ int SystemManager::runLane(std::string filename, int no_of_frames,
             // Plot the lane, turn direction and heading angle
             plot_.plot(frame, lane, turn, drive_heading, show_plot);
             
-            cv::waitKey(1);//delay?
+            cv::waitKey(1);//delay
 
         } else {
         
@@ -124,7 +126,6 @@ int SystemManager::runLane(std::string filename, int no_of_frames,
         //fpsString += string;
         printf("fps: %.1f\n", fps);
 #endif
-
   }
 
   cv::destroyAllWindows();

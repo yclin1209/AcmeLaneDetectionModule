@@ -35,7 +35,7 @@ int main() {
 
 //
 // Logitech G29 wheel controls logic
-// Added by YC Lin,2019,MXIC TW
+// Added by YC Lin,MXIC,2019
 //
 void *child(void *data){
     
@@ -66,7 +66,7 @@ void *child(void *data){
 
     //1. forceOff()// turn off effects (except for auto-center)
     //   relayOS([slot, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
-    //   slot = 0xf3 or 0x?0
+    //   slot = 0xf3
     memset(buf,0x00,sizeof(buf));
     buf[0] = 0xf3;
     buf[1] = 0x00;
@@ -93,8 +93,8 @@ void *child(void *data){
     memset(buf,0x00,sizeof(buf));
     buf[0] = 0xf8;
     buf[1] = 0x81;
-    buf[2] = 450 & 0x00ff;
-    buf[3] = (450 & 0xff00)>>8;
+    buf[2] = 270 & 0x00ff;
+    buf[3] = (270 & 0xff00)>>8;
     buf[4] = 0x00;
     buf[5] = 0x00;
     buf[6] = 0x00;
@@ -103,12 +103,18 @@ void *child(void *data){
         printf("Unable to write()\n");
         printf("Error: %ls\n", hid_error(handle));
     }
+
+#define AUTO_CENTER 0
  
     //4. autoCenter()
     //   auto-center on
     //   relayOS([0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
     memset(buf,0x00,sizeof(buf));
-    buf[0] = 0x14;
+#if AUTO_CENTER
+    buf[0] = 0x14;    // on
+#else
+    buf[0] = 0xf5;  //autoCenter off
+#endif
     buf[1] = 0x00;
     buf[2] = 0x00;
     buf[3] = 0x00;
@@ -120,7 +126,7 @@ void *child(void *data){
         printf("Unable to write()\n");
         printf("Error: %ls\n", hid_error(handle));
     }
-
+#if AUTO_CENTER
     //
     // custom auto-center setting
     //
@@ -138,7 +144,7 @@ void *child(void *data){
         printf("Unable to write()\n");
         printf("Error: %ls\n", hid_error(handle));
     }
-
+#endif
     // friction present when turning the wheel
     // the first "number" is for left rotation, the second for right rotation
     // 0x00 through 0x07 range,
@@ -147,9 +153,9 @@ void *child(void *data){
     memset(buf,0x00,sizeof(buf));
     buf[0] = 0x21;
     buf[1] = 0x02;
-    buf[2] = 0x02; //friction num, left
+    buf[2] = 0x05; //friction num, left
     buf[3] = 0x00;
-    buf[4] = 0x02; //friction num, right
+    buf[4] = 0x05; //friction num, right
     buf[5] = 0x00;
     buf[6] = 0x00;
     res = hid_write(handle, buf,7);
@@ -161,8 +167,10 @@ void *child(void *data){
   
     sleep(1); // delay, waiting for video loading
 
+    double last_dir = 0;
     
     for(int i=0;i<1200;i++) { //TBC, loop count
+#if AUTO_CENTER
         if ( (direction > 1) || (direction < -1) ) {
             unsigned char dir=0;
 
@@ -205,7 +213,36 @@ void *child(void *data){
                 printf("Error: %ls\n", hid_error(handle));
             }
          }
+#else
+        int diff = round(last_direction - direction);
+        last_direction = direction;    
+   
+            unsigned char dir=0;
 
+            if (diff =>1)
+                dir = 0xff; // left turn
+            else if(diff <= -1)
+                dir = 0x00; // right turn
+
+            // force
+            // relayOS([0x11, 0x00, number, 0x00, 0x00, 0x00, 0x00])
+            memset(buf,0x00,sizeof(buf));
+            buf[0] = 0x11;
+            buf[1] = 0x00;
+            buf[2] = dir;
+            buf[3] = 0x00;
+            buf[4] = 0x00;
+            buf[5] = 0x00;
+            buf[6] = 0x00;
+
+            res = hid_write(handle, buf,7);
+            if (res < 0) {
+                printf("Unable to write()\n");
+                printf("Error: %ls\n", hid_error(handle));
+            }
+        }
+
+#endif
          usleep(75000);// sampling rate( about 13 FPS )
     }
     
