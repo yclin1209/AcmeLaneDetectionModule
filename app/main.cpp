@@ -14,18 +14,29 @@
 #include "../include/SystemManager.hpp"
 #include <pthread.h>
 #include <hidapi/hidapi.h>
+#include <opencv2/videoio.hpp>
+
 void *child(void *data);
 double direction;
+int video_frame_number;
 
 int main() {
+
+#define VIDEO "../input/project_video.mp4"
 
     while(1)
     {
         pthread_t t;
+
         pthread_create(&t, NULL, child, NULL);
 
         SystemManager laneDetection;
-        laneDetection.runLane("../input/project_video.mp4", 1200, true);
+        
+        cv::VideoCapture video(VIDEO);
+
+        video_frame_number = video.get(cv::CAP_PROP_FRAME_COUNT);
+
+        laneDetection.runLane(VIDEO, video_frame_number, true);
 
         pthread_join(t,NULL);
      }
@@ -47,21 +58,19 @@ void *child(void *data){
     struct hid_device_info *devs, *cur_dev;
 
     if (hid_init())
-        //return -1;
-        goto EXIT;
+        pthread_exit(NULL);
 
     // Open the device using the VID, PID,
     // and optionally the Serial number.
     handle = hid_open(0x46D, 0xC24F, NULL);
     if (!handle) {
         printf("unable to open device\n");
-        //return 1;
-        goto EXIT;
+        pthread_exit(NULL);
     }
 
 
     //
-    // G29 Wheel control
+    // G29 Wheel controls
     //
 
     //1. forceOff()// turn off effects (except for auto-center)
@@ -93,8 +102,8 @@ void *child(void *data){
     memset(buf,0x00,sizeof(buf));
     buf[0] = 0xf8;
     buf[1] = 0x81;
-    buf[2] = 270 & 0x00ff;
-    buf[3] = (270 & 0xff00)>>8;
+    buf[2] = 350 & 0x00ff;
+    buf[3] = (350 & 0xff00)>>8;
     buf[4] = 0x00;
     buf[5] = 0x00;
     buf[6] = 0x00;
@@ -103,18 +112,11 @@ void *child(void *data){
         printf("Unable to write()\n");
         printf("Error: %ls\n", hid_error(handle));
     }
-
-#define AUTO_CENTER 0
  
-    //4. autoCenter()
     //   auto-center on
     //   relayOS([0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
     memset(buf,0x00,sizeof(buf));
-#if AUTO_CENTER
-    buf[0] = 0x14;    // on
-#else
-    buf[0] = 0xf5;  //autoCenter off
-#endif
+    buf[0] = 0x14;// autoCenter on
     buf[1] = 0x00;
     buf[2] = 0x00;
     buf[3] = 0x00;
@@ -126,7 +128,7 @@ void *child(void *data){
         printf("Unable to write()\n");
         printf("Error: %ls\n", hid_error(handle));
     }
-#if AUTO_CENTER
+
     //
     // custom auto-center setting
     //
@@ -144,18 +146,14 @@ void *child(void *data){
         printf("Unable to write()\n");
         printf("Error: %ls\n", hid_error(handle));
     }
-#endif
-    // friction present when turning the wheel
-    // the first "number" is for left rotation, the second for right rotation
-    // 0x00 through 0x07 range,
-    // 0x07 is the strongest friction and then 0x08 is no friction
-    // relayOS([0x21, 0x02, number, 0x00, number, 0x00, 0x00])
+
+    // forceOff(1) => (centering)
     memset(buf,0x00,sizeof(buf));
-    buf[0] = 0x21;
-    buf[1] = 0x02;
-    buf[2] = 0x05; //friction num, left
+    buf[0] = 0x10;
+    buf[1] = 0x00;
+    buf[2] = 0x00;
     buf[3] = 0x00;
-    buf[4] = 0x05; //friction num, right
+    buf[4] = 0x00;
     buf[5] = 0x00;
     buf[6] = 0x00;
     res = hid_write(handle, buf,7);
@@ -164,21 +162,71 @@ void *child(void *data){
         printf("Error: %ls\n", hid_error(handle));
     }
 
-  
-    sleep(1); // delay, waiting for video loading
-
-    double last_dir = 0;
+    sleep(1);
     
-    for(int i=0;i<1200;i++) { //TBC, loop count
-#if AUTO_CENTER
-        if ( (direction > 1) || (direction < -1) ) {
+    // auto-center off
+    memset(buf,0x00,sizeof(buf));    
+    buf[0] = 0xf5;  //autoCenter off
+    buf[1] = 0x00;
+    buf[2] = 0x00;
+    buf[3] = 0x00;
+    buf[4] = 0x00;
+    buf[5] = 0x00;
+    buf[6] = 0x00;
+    res = hid_write(handle, buf,7);
+    if (res < 0) {
+        printf("Unable to write()\n");
+        printf("Error: %ls\n", hid_error(handle));
+    }
+
+    // friction present when turning the wheel
+    // the first "number" is for left rotation, the second for right rotation
+    // 0x00 through 0x07 range,0x07 is the strongest friction
+    // relayOS([0x21, 0x02, number, 0x00, number, 0x00, 0x00])
+    memset(buf,0x00,sizeof(buf));
+    buf[0] = 0x21;
+    buf[1] = 0x02;
+    buf[2] = 0x00; //friction num, left
+    buf[3] = 0x00;
+    buf[4] = 0x00; //friction num, right
+    buf[5] = 0x00;
+    buf[6] = 0x00;
+    res = hid_write(handle, buf,7);
+    if (res < 0) {
+        printf("Unable to write()\n");
+        printf("Error: %ls\n", hid_error(handle));
+    }
+
+    //
+    // 
+    //
+
+#define DIFF_THRESHOLD 0.5
+#define WHEEL_SEGMENT 10    // direction = +5.0 ~ -5.0
+#define uDELAY 81500        // about 1/12 sec
+
+    double now_dir = 0;
+    double movingAvg = 0;
+ 
+    for(int i=0; i<video_frame_number; i++) {
+
+        movingAvg += (direction - movingAvg) * 0.05f;
+
+        double diff = now_dir - floor( movingAvg / DIFF_THRESHOLD ) * DIFF_THRESHOLD;
+        printf("now_dir=%.1f,diff = %.1f\n",now_dir,diff);
+
+        if ( diff != 0 && abs(now_dir) < WHEEL_SEGMENT*DIFF_THRESHOLD ) { 
             unsigned char dir=0;
 
-            if (direction > 1)
+            if ( diff <= -DIFF_THRESHOLD ){
                 dir = 0xff; // left turn 
-            else
+                now_dir = now_dir + DIFF_THRESHOLD;
+            }else if( diff >= DIFF_THRESHOLD){
                 dir = 0x00; // right turn
-
+                now_dir = now_dir - DIFF_THRESHOLD;
+            }
+             
+#if 1 //enable force
             // force
             // relayOS([0x11, 0x00, number, 0x00, 0x00, 0x00, 0x00])
             memset(buf,0x00,sizeof(buf));
@@ -195,62 +243,32 @@ void *child(void *data){
                 printf("Unable to write()\n");
                 printf("Error: %ls\n", hid_error(handle));
             }
-            
+#endif            
+            usleep(uDELAY/10);
+
          }else{
-            // forceOff(1)
-            // => (centering)
-            memset(buf,0x00,sizeof(buf));
-            buf[0] = 0x10;
-            buf[1] = 0x00;
-            buf[2] = 0x00;
-            buf[3] = 0x00;
-            buf[4] = 0x00;
-            buf[5] = 0x00;
-            buf[6] = 0x00;
-            res = hid_write(handle, buf,7);
-            if (res < 0) {
-                printf("Unable to write()\n");
-                printf("Error: %ls\n", hid_error(handle));
-            }
+            usleep(uDELAY/10);
          }
-#else
-        int diff = round(last_direction - direction);
-        last_direction = direction;    
-   
-            unsigned char dir=0;
-
-            if (diff =>1)
-                dir = 0xff; // left turn
-            else if(diff <= -1)
-                dir = 0x00; // right turn
-
-            // force
-            // relayOS([0x11, 0x00, number, 0x00, 0x00, 0x00, 0x00])
-            memset(buf,0x00,sizeof(buf));
-            buf[0] = 0x11;
-            buf[1] = 0x00;
-            buf[2] = dir;
-            buf[3] = 0x00;
-            buf[4] = 0x00;
-            buf[5] = 0x00;
-            buf[6] = 0x00;
-
-            res = hid_write(handle, buf,7);
-            if (res < 0) {
+         // forceOff(1)
+         memset(buf,0x00,sizeof(buf));
+         buf[0] = 0x10;
+         buf[1] = 0x00;
+         buf[2] = 0x00;
+         buf[3] = 0x00;
+         buf[4] = 0x00;
+         buf[5] = 0x00;
+         buf[6] = 0x00;
+         res = hid_write(handle, buf,7);
+         if (res < 0) {
                 printf("Unable to write()\n");
                 printf("Error: %ls\n", hid_error(handle));
-            }
-        }
+         }
 
-#endif
-         usleep(75000);// sampling rate( about 13 FPS )
+         usleep(uDELAY - uDELAY/10);
     }
     
     hid_close(handle);
     /* Free static HIDAPI objects. */
-    hid_exit();
-EXIT:          
+    hid_exit();          
     pthread_exit(NULL);
 }
-
-
